@@ -1,0 +1,113 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-title-card
+        title: A1
+        alignment: start
+      - type: custom:mod-card
+        card:
+          type: custom:mushroom-chips-card
+          chips:
+            - type: entity
+              entity: button.a1_03919d4b2600078_stop_printing
+              icon: mdi:stop
+              content_info: false
+            - type: entity
+              entity: button.a1_03919d4b2600078_pause_printing
+              icon: mdi:pause
+              content_info: false
+            - type: entity
+              entity: button.a1_03919d4b2600078_resume_printing
+              icon: mdi:play
+              content_info: false
+          card_mod:
+            style: |
+              ha-card {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                height: 80px;
+              }
+  - type: custom:mod-card
+    card:
+      camera_view: live
+      type: picture-glance
+      entities: []
+      camera_image: camera.bambu_a1
+  - type: custom:mod-card
+    card_mod:
+      style:
+        hui-horizontal-stack-card $: |
+          div#root > :first-child > * {
+            width: 20%;
+            flex: auto; 
+          }
+          div#root > :last-child > * {
+            width: 80%;
+            flex: auto; 
+          }
+    card:
+      type: horizontal-stack
+      cards:
+        - type: custom:mushroom-chips-card
+  - type: custom:mod-card
+    card:
+      type: custom:mushroom-chips-card
+      chips:
+        - type: template
+          entity: binary_sensor.a1_03919d4b2600078_online
+          card_mod:
+            style: |
+              ha-card {
+                background: none !important;
+                border: none;
+                font-size: 4rem !important;
+              }
+        - type: entity
+          entity: sensor.a1_03919d4b2600078_current_stage
+        - type: light
+          icon: mdi:lightbulb
+          entity: light.a1_03919d4b2600078_chamber_light
+        - type: entity
+          entity: sensor.a1_03919d4b2600078_wi_fi_signal
+        - type: entity
+          entity: binary_sensor.a1_03919d4b2600078_hms_errors
+          icon: mdi:alert-circle
+  - type: custom:mushroom-entity-card
+    entity: sensor.a1_03919d4b2600078_task_name
+    name: Task
+    icon: mdi:clipboard-text
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-entity-card
+        entity: sensor.a1_03919d4b2600078_print_progress
+        name: Progress
+        icon: mdi:progress-helper
+      - type: custom:mushroom-template-card
+        primary: Layer
+        icon_color: var(--rgb-state-entity)
+        secondary: >-
+          {{states('sensor.a1_03919d4b2600078_current_layer')}} /
+          {{states('sensor.a1_03919d4b2600078_total_layer_count')}}
+        icon: mdi:layers
+  - type: custom:mod-card
+    card:
+      show_name: false
+      show_icon: true
+      show_state: true
+      type: glance
+      entities:
+        - entity: sensor.a1_03919d4b2600078_nozzle_temperature
+          icon: mdi:printer-3d-nozzle-heat
+        - entity: sensor.a1_03919d4b2600078_bed_temperature
+          icon: mdi:train-car-flatbed
+        - entity: sensor.a1_03919d4b2600078_speed_profile
+      state_color: false
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: sensor.a1_03919d4b2600078_end_time
+      - type: entity
+        entity: sensor.a1_03919d4b2600078_remaining_time
+    alignment: justify
